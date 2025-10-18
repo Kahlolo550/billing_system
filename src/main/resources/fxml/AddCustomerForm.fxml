@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.demo13.AddCustomerController"
+      spacing="18"
+      alignment="CENTER"
+      style="-fx-padding: 40;
+             -fx-background-color: linear-gradient(to bottom right, #e6eef5, #d0e3f0);
+             -fx-background-radius: 20;
+             -fx-font-family: 'Segoe UI', sans-serif;
+             -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 15, 0, 0, 6);">
+
+    <Label text="Add New Customer"
+           style="-fx-font-size: 22px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #1e3a5f;
+                  -fx-padding: 0 0 20 0;"/>
+
+    <TextField fx:id="idField" promptText="Customer ID" style="-fx-pref-width: 280; -fx-font-size: 15px; -fx-padding: 12; -fx-border-color: #c0cad6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 1);" />
+
+    <TextField fx:id="nameField" promptText="Name" style="-fx-pref-width: 280; -fx-font-size: 15px; -fx-padding: 12; -fx-border-color: #c0cad6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 1);" />
+
+    <TextField fx:id="addressField" promptText="Address" style="-fx-pref-width: 280; -fx-font-size: 15px; -fx-padding: 12; -fx-border-color: #c0cad6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 1);" />
+
+    <TextField fx:id="meterField" promptText="Meter Number" style="-fx-pref-width: 280; -fx-font-size: 15px; -fx-padding: 12; -fx-border-color: #c0cad6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 1);" />
+
+    <TextField fx:id="usageField" promptText="Usage (kWh)" style="-fx-pref-width: 280; -fx-font-size: 15px; -fx-padding: 12; -fx-border-color: #c0cad6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 1);" />
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Save" onAction="#handleSave" style="-fx-pref-width: 130; -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: linear-gradient(to right, #0078ff, #00c6ff); -fx-background-radius: 10; -fx-cursor: hand; -fx-padding: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 3);" />
+        <Button text="Cancel" onAction="#handleCancel" style="-fx-pref-width: 130; -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: linear-gradient(to right, #ef4444, #dc2626); -fx-background-radius: 10; -fx-cursor: hand; -fx-padding: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 3);" />
+    </HBox>
+</VBox>

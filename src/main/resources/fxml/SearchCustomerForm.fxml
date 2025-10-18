@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.demo13.SearchCustomerController"
+      spacing="18"
+      alignment="CENTER"
+      style="-fx-padding: 40;
+             -fx-background-color: linear-gradient(to bottom right, #e6eef5, #d0e3f0);
+             -fx-background-radius: 20;
+             -fx-font-family: 'Segoe UI', sans-serif;
+             -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 15, 0, 0, 6);">
+
+    <Label text="Search Customer"
+           style="-fx-font-size: 22px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #1e3a5f;
+                  -fx-padding: 0 0 20 0;"/>
+
+    <TextField fx:id="searchField" promptText="Enter Customer ID or Name"
+               style="-fx-pref-width: 280;
+                      -fx-font-size: 15px;
+                      -fx-padding: 12;
+                      -fx-border-color: #c0cad6;
+                      -fx-border-radius: 10;
+                      -fx-background-radius: 10;
+                      -fx-background-color: white;
+                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 1);"/>
+
+    <Label fx:id="resultLabel"
+           text=""
+           style="-fx-font-size: 14px;
+                  -fx-text-fill: #dc2626;
+                  -fx-padding: 0 0 10 0;"/>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Search" onAction="#handleSearch"
+                style="-fx-pref-width: 130;
+                       -fx-font-size: 15px;
+                       -fx-font-weight: bold;
+                       -fx-text-fill: white;
+                       -fx-background-color: linear-gradient(to right, #0078ff, #00c6ff);
+                       -fx-background-radius: 10;
+                       -fx-cursor: hand;
+                       -fx-padding: 10;
+                       -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 3);"/>
+
+        <Button text="Cancel" onAction="#handleCancel"
+                style="-fx-pref-width: 130;
+                       -fx-font-size: 15px;
+                       -fx-font-weight: bold;
+                       -fx-text-fill: white;
+                       -fx-background-color: linear-gradient(to right, #ef4444, #dc2626);
+                       -fx-background-radius: 10;
+                       -fx-cursor: hand;
+                       -fx-padding: 10;
+                       -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 3);"/>
+    </HBox>
+
+</VBox>
