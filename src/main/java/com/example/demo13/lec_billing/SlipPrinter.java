@@ -23,7 +23,7 @@ public class SlipPrinter {
 
             idLabel.setText("Customer ID: " + customer.getId());
             nameLabel.setText("Name: " + customer.getName());
-            meterLabel.setText("Meter No: " + customer.getMeter());
+            meterLabel.setText("Meter No: " + customer.getMeterNumber());
             usageLabel.setText("Usage (kWh): " + customer.getUsage());
             billLabel.setText(String.format("Bill Amount: M%.2f", customer.getBill()));
 

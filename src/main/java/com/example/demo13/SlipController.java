@@ -32,7 +32,7 @@ public class SlipController {
 
         customerIdLabel.setText("Customer ID: " + customer.getId());
         nameLabel.setText("Name: " + customer.getName());
-        meterLabel.setText("Meter No: " + customer.getMeter());
+        meterLabel.setText("Meter No: " + customer.getMeterNumber());
         usageLabel.setText("Usage (kWh): " + String.format("%.2f", customer.getUsage()));
         billLabel.setText("Bill Amount: M" + String.format("%.2f", customer.getBill()));
     }

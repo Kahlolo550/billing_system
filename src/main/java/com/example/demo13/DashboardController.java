@@ -22,18 +22,20 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
+        // Bind columns to properties
         idColumn.setCellValueFactory(cell -> cell.getValue().idProperty());
         nameColumn.setCellValueFactory(cell -> cell.getValue().nameProperty());
         addressColumn.setCellValueFactory(cell -> cell.getValue().addressProperty());
-        meterColumn.setCellValueFactory(cell -> cell.getValue().meterProperty());
+        meterColumn.setCellValueFactory(cell -> cell.getValue().meterNumberProperty()); // UPDATED
         usageColumn.setCellValueFactory(cell -> cell.getValue().usageProperty().asObject());
         billColumn.setCellValueFactory(cell -> cell.getValue().billProperty().asObject());
 
+        // Load data
         refreshCustomerTable();
     }
 
     private void refreshCustomerTable() {
-        manager.loadCustomersFromDB(); // Ensure latest data from DB
+        manager.loadCustomersFromDB();
         customerTable.setItems(FXCollections.observableArrayList(manager.getCustomers()));
     }
 
@@ -47,21 +49,35 @@ public class DashboardController {
 
             AddCustomerController controller = loader.getController();
             controller.setManager(manager);
-            controller.setOnCustomerAdded(this::refreshCustomerTable); // Refresh after save
+            controller.setOnCustomerAdded(this::refreshCustomerTable);
 
             formStage.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
+            showError("Failed to open Add Customer form.");
         }
     }
 
     @FXML
     private void handleDelete() {
         Customer selected = customerTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            manager.deleteCustomer(selected);
-            refreshCustomerTable();
+        if (selected == null) {
+            showAlert("No Selection", "Please select a customer to delete.");
+            return;
         }
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Delete");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Are you sure you want to delete customer: " + selected.getName() + "?");
+
+        confirm.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                manager.deleteCustomer(selected);
+                refreshCustomerTable();
+                showAlert("Deleted", "Customer deleted successfully.");
+            }
+        });
     }
 
     @FXML
@@ -70,7 +86,6 @@ public class DashboardController {
     }
 
     @FXML
-
     private void handleSearch() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SearchCustomerForm.fxml"));
@@ -85,25 +100,15 @@ public class DashboardController {
             searchStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-            showError("Failed to open search form.");
+            showError("Failed to open Search form.");
         }
     }
-
-
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
 
     @FXML
     private void handlePrintSlip() {
         Customer selected = customerTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("No customer selected", "Please select a customer to print the slip.");
+            showAlert("No Selection", "Please select a customer to print the slip.");
             return;
         }
 
@@ -113,14 +118,13 @@ public class DashboardController {
             slipStage.setScene(new Scene(loader.load()));
             slipStage.setTitle("Customer Slip");
 
-            // Pass customer to SlipController
             SlipController controller = loader.getController();
             controller.setCustomer(selected);
 
             slipStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Error", "Failed to load slip view.");
+            showError("Failed to load Slip view.");
         }
     }
 
@@ -132,4 +136,11 @@ public class DashboardController {
         alert.showAndWait();
     }
 
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
